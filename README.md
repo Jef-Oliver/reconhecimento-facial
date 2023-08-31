@@ -1,4 +1,17 @@
-# reconhecimento-facial
+<h1>Ponto por reconhecimento-facial</h1>
+1- Clone o Repositório:<br>
+
+```
+git clone https://github.com/seu-usuario/seu-repositorio.git
+```
+2- Configurar o Ambiente Virtual (Opcional, mas recomendado)<br>
+3- Instalar Bibliotecas
+- cv2
+  ```
+  pip install opencv-python
+  ```
+- numpy<br>
+  passe o mouse sobre [import numpy as np]() e instale
 
 <h1>Documentação do Sistema de Ponto Eletrônico por Reconhecimento Facial</h1>
 
