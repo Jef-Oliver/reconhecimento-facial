@@ -12,19 +12,11 @@ print("Capturando as imagens...")
 
 while True:
     conectado, imagem = camera.read()
-
-    if not conectado:
-        print("Não foi possível capturar a imagem da câmera.")
-        break
-
-    if imagem is None:
-        print("Imagem vazia.")
-        continue
-
     imagemCinza = cv2.cvtColor(imagem, cv2.COLOR_BGR2RGB)
-
-    print(np.average(imagemCinza))
-    facesDetectadas = classificador.detectMultiScale(imagemCinza, scaleFactor=1.5, minSize=(100, 100))
+    np.average(imagemCinza)
+    facesDetectadas = classificador.detectMultiScale(imagemCinza,
+                                                     scaleFactor=1.5,
+                                                     minSize=(100, 100))
 
     for (x, y, l, a) in facesDetectadas:
         cv2.rectangle(imagem, (x, y), (x + 1, y + a), (0, 0, 255), 2)
