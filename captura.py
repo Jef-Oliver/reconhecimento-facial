@@ -12,8 +12,17 @@ print("Capturando as imagens...")
 
 while True:
     conectado, imagem = camera.read()
+
+    if not conectado:
+        print("Não foi possível capturar a imagem da câmera.")
+        break
+
+    if imagem is None:
+        print("Imagem vazia.")
+        continue
+
     imagemCinza = cv2.cvtColor(imagem, cv2.COLOR_BGR2RGB)
-    np.average(imagemCinza)
+    print(np.average(imagemCinza))
     facesDetectadas = classificador.detectMultiScale(imagemCinza,
                                                      scaleFactor=1.5,
                                                      minSize=(100, 100))
@@ -30,7 +39,7 @@ while True:
                 if np.average(imagemCinza) > 110:
                     imagemFace = cv2.resize(imagemCinza[y:y + a, x:x + l], (largura, altura))
                     cv2.imwrite("fotos/pessoa." + str(id) + str(amostra) + ".jpg", imagemFace)
-                    print("[foto " + str(amostra) + "capturada com sucesso]")
+                    print("[foto " + str(amostra) + " capturada com sucesso]")
                     amostra += 1
 
     cv2.imshow("face", imagem)
