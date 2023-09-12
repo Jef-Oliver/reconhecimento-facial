@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Cadastrar funcionário</title>
+    <meta charset="UTF-8">
+    <title>Cadastrar funcionário</title>
 </head>
 <body>
-  <h1>Cadastrar funcionário</h1>
+<h1>Cadastrar funcionário</h1>
 
-  <form action="/templates" method="POST">
-    <input type="text" name="nome" placeholder="Nome">
-    <input type="email" name="email" placeholder="E-mail">
-    <input type="password" name="senha" placeholder="Senha">
-    <input type="text" name="cargo" placeholder="Cargo">
-    <input type="text" name="departamento" placeholder="Departamento">
-    <input type="submit" value="Cadastrar">
-  </form>
+<form action="/cadastrar_funcionario" method="POST">
+    {% extends 'base.html' %}
+
+    {% block content %}
+    <h1>Cadastro de funcionário</h1>
+
+    <form action="{% url 'cadastrar_funcionario' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {{ form.as_p() }}
+
+        <button type="submit">Cadastrar</button>
+    </form>
+    {% endblock %}
+</form>
 </body>
 </html>

@@ -1,10 +1,10 @@
 from cv2 import threshold
+from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-
+from .forms import FuncionarioForm
 from reconhecedor.reconhecedor_fisherfaces import reconhecedor
 from .models import Funcionario
-from .forms import FuncionarioForm
 
 
 # Create your views here.
@@ -31,13 +31,31 @@ def registrar_ponto(request):
 
 
 def cadastrar_funcionario(request):
+    # Validar dados
+
     if request.method == 'POST':
-        form = FuncionarioForm(request.POST, request.FILES)
+        nome = request.POST.get('nome')
+        cpf = request.POST.get('cpf')
+        rg = request.POST.get('rg')
+        data_nascimento = request.POST.get('data_nascimento')
+        cargo = request.POST.get('cargo')
 
+        if not nome:
+            return HttpResponse('Nome não informado!')
+        if not cpf:
+            return HttpResponse('CPF não informado!')
+        if not rg:
+            return HttpResponse('RG não informado!')
+        if not data_nascimento:
+            return HttpResponse('Data de nascimento não informada!')
+        if not cargo:
+            return HttpResponse('Cargo não informado!')
+
+    # Salvar funcionário
+    if request.method == 'POST':
+        form = FuncionarioForm(request.POST)  # request.FILES ?
         if form.is_valid():
-            funcionario = form.save()
-            return redirect('funcionarios')
-    else:
-        form = FuncionarioForm()
+            form.save()
+            return redirect('ponto')
 
-    return render(request, 'cadastrar.html', {'form': form})
+    return render(request, 'cadastrar.html')

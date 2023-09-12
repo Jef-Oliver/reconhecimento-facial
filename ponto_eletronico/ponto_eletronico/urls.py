@@ -16,6 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from ponto_eletronico.app.views import registrar_ponto, cadastrar_funcionario
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', registrar_ponto, name='ponto'),
+    path('', cadastrar_funcionario, name='cadastrar'),
 ]

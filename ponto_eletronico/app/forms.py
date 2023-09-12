@@ -3,8 +3,8 @@ import os
 from django import forms
 from .models import Funcionario
 
-class FuncionarioForm(forms.ModelForm):
 
+class FuncionarioForm(forms.ModelForm):
     foto_1 = forms.ImageField(required=True)
     foto_2 = forms.ImageField(required=True)
     foto_3 = forms.ImageField(required=True)
@@ -13,7 +13,7 @@ class FuncionarioForm(forms.ModelForm):
 
     class Meta:
         model = Funcionario
-        fields = ('nome', 'cpf', 'rg', 'data_nascimento', 'cargo')
+        fields = ['nome', 'cpf', 'rg', 'data_nascimento', 'cargo']
 
     def save(self, commit=True):
         funcionario = super().save(commit=False)
