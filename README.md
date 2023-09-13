@@ -41,11 +41,11 @@ Este documento abrange o sistema de ponto eletrônico por reconhecimento facial 
 - [x] Registro de Entrada e Saída:
 - [x] Desenvolvimento da capacidade de reconhecimento facial em tempo real durante os registros de entrada e saída.
 - [ ] Armazenamento dos registros, incluindo o horário e a identificação do funcionário, em um banco de dados.
-- [ ] Interface de Usuário Simples:
+- [X] Interface de Usuário Simples:
 - [ ] Criação de uma interface de usuário amigável para visualizar e gerenciar os registros de entrada e saída.
 - [ ] Possibilidade de consulta de histórico e geração de relatórios.
-- [ ] Configuração e Parametrização:
-- [ ] Configuração da câmera para captura de imagens.
+- [X] Configuração e Parametrização:
+- [X] Configuração da câmera para captura de imagens.
 - [ ] Definição de parâmetros de confiança e precisão do reconhecimento facial.
 - [x] Documentação Adequada:
 - [x] Elaboração de documentação abrangente, incluindo requisitos, arquitetura, instruções de instalação e uso.
