@@ -8,6 +8,9 @@ class Funcionario(models.Model):
     id = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=100)
     cpf = models.CharField(max_length=11)
+    rg = models.CharField(max_length=9)
+    data_nascimento = models.DateField()
+    cargo = models.CharField(max_length=100)
     foto = models.ImageField(upload_to='fotos/', null=True, blank=True)
 
     def __str__(self):

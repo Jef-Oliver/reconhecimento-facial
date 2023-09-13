@@ -1,10 +1,9 @@
 from cv2 import threshold
-from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import FuncionarioForm
-from reconhecedor.reconhecedor_fisherfaces import reconhecedor
 from .models import Funcionario
+from .reconhecedor import fisherfaces
 
 
 # Create your views here.
@@ -15,7 +14,7 @@ def registrar_ponto(request):
         imagem = request.FILES['imagem']
 
         # realiza o reconhecimento facial
-        identificacao, confianca = reconhecedor.predict(imagem)
+        identificacao, confianca = fisherfaces() #.predict(imagem)
 
         # verifica se o funcionário foi reconhecido
         if confianca > threshold:
@@ -56,6 +55,11 @@ def cadastrar_funcionario(request):
         form = FuncionarioForm(request.POST)  # request.FILES ?
         if form.is_valid():
             form.save()
-            return redirect('ponto')
+            # return redirect('ponto')
 
-    return render(request, 'cadastrar.html')
+    return render(request, 'cadastrar.html', context={'form': FuncionarioForm()})
+
+def listagem(request):
+    data = {'funcionarios': Funcionario.objects.all()}
+    return render(request, "/templates/listagem.html", data)
+
